@@ -1,21 +1,33 @@
 Feature: Transaction tests
 
-  Scenario: Make a bet with insufficient balance
+  Background:
     Given home page is open
-    When user clicks on available selection bet
+    And live sports betting view is selected
+
+  Scenario: Make a bet with insufficient balance
+    When user clicks on first available bet selection
     Then betslip with the selected selection is displayed
-    When user logs in with LOW_BALANCE_ACCOUNT
-    Then filled betslip is displayed
-    And user data is displayed
-    When user fills stake field
+    When user logs in with VALID account
+    Then user data is displayed
+    And filled betslip is displayed
+    When user enters 2 into stake field
     Then place bet button is disabled
     When user clicks deposit button
     Then fast deposit popup appears
-    When user fills in deposit amount
+    When user enters 75 into deposit field
+    And user selects deposit method VISA
     And clicks continue button
-    And fills in credit card info
+    And fills in INVALID_CREDITCARD info
     And clicks next button
-    Then successful deposit message is displayed
+    Then error message is displayed
+
+
+  Scenario: Make a bet with sufficient balance
+    When user clicks on first available bet selection
+    Then betslip with the selected selection is displayed
+    When user logs in with VALID account
+    Then filled betslip is displayed
+    And user data is displayed
     When user places a bet with chosen selection
     Then betslip is filled with bet info
     When user opens my account view
@@ -23,19 +35,3 @@ Feature: Transaction tests
     When user opens transactions view
     Then list of users transactions is displayed
     And placed bet and deposit are displayed in transaction list
-
-
-    Scenario: Make a bet with sufficient balance
-      Given home page is open
-      When user clicks on available selection bet
-      Then betslip with the selected selection is displayed
-      When user logs in with LOW_BALANCE_ACCOUNT
-      Then filled betslip is displayed
-      And user data is displayed
-      When user places a bet with chosen selection
-      Then betslip is filled with bet info
-      When user opens my account view
-      Then account page is displayed
-      When user opens transactions view
-      Then list of users transactions is displayed
-      And placed bet and deposit are displayed in transaction list
