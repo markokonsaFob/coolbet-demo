@@ -25,9 +25,6 @@ When(~/^user enters (.*) into deposit field$/) { String amount ->
 
 And(~/^clicks continue button$/) { ->
     ActionsImpl.getBettingActions().clickDepositContinueButton()
-    try {
-        ActionsImpl.getBettingActions().clickDepositContinueButton()
-    }catch(ignore){}
 }
 
 And(~/^user selects deposit method (.*)/) { String method ->
@@ -50,4 +47,9 @@ Then(~/^error message is displayed$/) { ->
 
 And(~/^live sports betting view is selected$/) { ->
     ActionsImpl.getBettingActions().openSportPage()
+}
+When(~/^user checks the betslip$/) { ->
+    if (!ActionsImpl.getBetSlipActions().isBetSlipVisible()) {
+        ActionsImpl.getBetSlipActions().clickBetSlipMenuButton()
+    }
 }

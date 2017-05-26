@@ -8,8 +8,8 @@ import org.openqa.selenium.Dimension
 import static impl.Constants.ENVIRONMENT_URL
 
 
-class CoreActionsMobile implements ICoreActions{
-    CoreActionsMobile(Device device){
+class CoreActionsMobile implements ICoreActions {
+    CoreActionsMobile(Device device) {
         this.device = device
     }
 
@@ -19,10 +19,11 @@ class CoreActionsMobile implements ICoreActions{
     @Override
     void openBrowser() {
         device.openBrowser(ENVIRONMENT_URL)
-        if(device.getCapabilities().getCapability("capability").toString().toUpperCase()=="CHROME") {
+        if (device.getCapabilities().getCapability("capability").toString().toUpperCase() == "CHROME") {
             DeviceManager.getInstance().getActiveDevice().getDriver().manage().window().setSize(new Dimension(414, 736))
         }
         ActionsImpl.getBettingActions().closeWelcomeBanner()
         ActionsImpl.getBettingActions().acceptCookiePopup()
+
     }
 }

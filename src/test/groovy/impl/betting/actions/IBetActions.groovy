@@ -6,9 +6,12 @@ import impl.betting.pageobjects.Creditcard
 import impl.betting.pageobjects.Deposit
 import io.cify.framework.core.Device
 import org.openqa.selenium.interactions.Actions
+
+import static impl.ActionsWrapper.scrollIntoViewAndClick
 import static impl.Constants.TIMEOUT10S
 
 import static impl.ActionsWrapper.waitForCondition
+import static impl.Constants.TIMEOUT2S
 
 trait IBetActions {
 
@@ -22,7 +25,7 @@ trait IBetActions {
      * Clicks on first available active bet
      */
     void clickOnFirstAvailableBet() {
-        waitForCondition(device, { new BettingSection(device).getAvailableBet().click(); true }, TIMEOUT10S)
+        waitForCondition(device, { scrollIntoViewAndClick(device, new BettingSection(device,TIMEOUT2S).getAvailableBet()); true }, TIMEOUT10S)
     }
 
     /**
@@ -30,11 +33,8 @@ trait IBetActions {
      */
     void closeRightDrawer() {
         int offset = 5
-        //try {
         Actions action = new Actions(device.getDriver())
         action.moveToElement(bettingSection.getDrawerClosingOverlay(), offset, offset).click().build().perform()
-        //} catch (ignore) {
-        //}
     }
 
     /**
@@ -65,7 +65,13 @@ trait IBetActions {
      * Clicks continue button in deposit popup
      */
     void clickDepositContinueButton() {
-        new Deposit(device).getContinueButton().click()
+        try {
+            waitForCondition(device, { new Deposit(device, TIMEOUT2S).getContinueButton().isDisplayed() }, TIMEOUT10S)
+            new Deposit(device).getContinueButton().click()
+            waitForCondition(device, { new Deposit(device,TIMEOUT2S).getContinueButton().isDisplayed() }, TIMEOUT10S)
+            new Deposit(device).getContinueButton().click()
+        } catch (ignore) {
+        }
 
     }
 
@@ -76,7 +82,7 @@ trait IBetActions {
     void selectDepositMethod(String method) {
         switch (method) {
             case VISA:
-                ActionsWrapper.scrollIntoViewAndClick(device, depositPopup.getVisaCreditCard())
+                scrollIntoViewAndClick(device, depositPopup.getVisaCreditCard())
                 break
             default: throw new Exception("$method is not a supported deposit method")
         }
@@ -104,14 +110,14 @@ trait IBetActions {
      * Accepts cookie popup
      */
     void acceptCookiePopup() {
-        bettingSection.getCookiesOKButton().click()
+        new BettingSection(device, TIMEOUT2S).getCookiesOKButton().click()
     }
 
     /**
      * Accepts welcome banner
      */
     void closeWelcomeBanner() {
-        bettingSection.getWelcomeBannerCloseButton().click()
+        new BettingSection(device, TIMEOUT10S).getWelcomeBannerCloseButton().click()
     }
 
     /**

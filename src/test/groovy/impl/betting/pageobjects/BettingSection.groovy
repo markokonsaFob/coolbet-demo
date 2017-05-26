@@ -45,4 +45,8 @@ class BettingSection extends PageObjects {
     BettingSection(Device device) {
         super(device)
     }
+
+    BettingSection(Device device, int timeout) {
+        super(device, timeout)
+    }
 }

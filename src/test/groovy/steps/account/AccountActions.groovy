@@ -7,6 +7,9 @@ import impl.ActionsImpl
 this.metaClass.mixin(EN)
 
 When(~/^user logs in with (.*) account$/) { AccountType account ->
+    try {
+        ActionsImpl.getBettingActions().closeRightDrawer()
+    }catch(ignore){}
     ActionsImpl.getAccountActions().loginWithAccount(account)
 }
 

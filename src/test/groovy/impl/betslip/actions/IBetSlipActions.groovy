@@ -5,7 +5,7 @@ import impl.betting.pageobjects.BettingSection
 import io.cify.framework.core.Device
 
 import static impl.ActionsWrapper.waitForCondition
-import static impl.Constants.TIMEOUT10S
+import static impl.Constants.TIMEOUT20S
 import static impl.Constants.TIMEOUT2S
 
 trait IBetSlipActions {
@@ -20,9 +20,8 @@ trait IBetSlipActions {
      */
     void clickBetSlipMenuButton() {
         if (!isBetSlipVisible()) {
-            sleep(1000)
-            waitForCondition(device, { new BetSlip(device, TIMEOUT2S).getBetSlipButton().click(); true }, TIMEOUT10S)
-            waitForCondition(device, { new BetSlip(device, TIMEOUT2S).getBetSlipButton().isDisplayed() }, TIMEOUT10S)
+            waitForCondition(device, { new BetSlip(device, TIMEOUT2S).getBetSlipButton().click(); true }, TIMEOUT20S)
+            waitForCondition(device, { new BetSlip(device, TIMEOUT2S).getBetSlip().isDisplayed() }, TIMEOUT20S)
         }
     }
 

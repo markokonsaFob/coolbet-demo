@@ -12,9 +12,8 @@ Then(~/^betslip with the selected selection is displayed$/) { ->
 }
 
 Then(~/^filled betslip is displayed$/) { ->
-    ActionsImpl.getBetSlipActions().clickBetSlipMenuButton()
     if (!ActionsImpl.getBetSlipActions().isBetSlipFilled()) {
-        throw new Exception("Betslip should not be empty")
+        throw new Exception("Betslip is not displayed or it is empty")
     }
 }
 

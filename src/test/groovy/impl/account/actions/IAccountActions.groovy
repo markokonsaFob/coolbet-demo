@@ -2,10 +2,8 @@ package impl.account.actions
 
 import impl.Account
 import impl.AccountType
-import impl.ActionsImpl
 import impl.account.pageobjects.LoginPageObjects
 import io.cify.framework.core.Device
-import org.openqa.selenium.support.ui.ExpectedConditions
 
 import static impl.ActionsWrapper.waitForCondition
 import static impl.Constants.*
@@ -14,34 +12,63 @@ trait IAccountActions {
     Device device
     LoginPageObjects loginPageObjects
 
-    void loginWithAccount(AccountType type){
-        ActionsImpl.getBettingActions().closeRightDrawer()
-        waitForCondition(device, {ExpectedConditions.elementToBeClickable(new LoginPageObjects(device).getMainPageLoginButton())},10)
+    /**
+     * Login with given account info
+     * @param type type of account to use
+     */
+    void loginWithAccount(AccountType type) {
         Account acc = Account.getAccount(type)
-        sleep(2000)
         clickMainPageLoginButton()
         fillEmailField(acc.getEmail())
         fillPasswordField(acc.getPassWord())
         clickLoginFormLoginButton()
     }
 
-    void clickMainPageLoginButton(){
-        waitForCondition(device,{new LoginPageObjects(device,TIMEOUT2S).getMainPageLoginButton().click();true},10)
+    /**
+     * Clicks login button on main page
+     */
+    void clickMainPageLoginButton() {
+        waitForCondition(device, { new LoginPageObjects(device).getMainPageLoginButton().isDisplayed() }, TIMEOUT30S)
+        waitForCondition(device, {
+            new LoginPageObjects(device, TIMEOUT2S).getMainPageLoginButton().click(); true
+        }, TIMEOUT30S)
     }
 
-    void clickLoginFormLoginButton(){
+    /**
+     * Clicks login button on login form
+     */
+    void clickLoginFormLoginButton() {
         loginPageObjects.getLoginFormLoginButton().click()
     }
 
-    void fillEmailField(String email){
+    /**
+     * Enters email
+     * @param email
+     */
+    void fillEmailField(String email) {
         loginPageObjects.getLoginEmail().sendKeys(email)
     }
 
-    void fillPasswordField(String password){
+    /**
+     * Enters password
+     * @param password
+     */
+    void fillPasswordField(String password) {
         loginPageObjects.getLoginPassword().sendKeys(password)
     }
 
-    boolean isUserIconDisplayed(){
-        loginPageObjects.getLoggedInIcon().isDisplayed()
+    /**
+     * Checks that logged in user icon is displayed
+     * @return
+     */
+    boolean isUserIconDisplayed() {
+        try {
+            waitForCondition(device, {
+                new LoginPageObjects(device, TIMEOUT2S).getLoggedInIcon().isDisplayed()
+            }, TIMEOUT20S)
+            true
+        } catch (ignore) {
+            false
+        }
     }
 }

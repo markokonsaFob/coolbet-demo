@@ -24,22 +24,20 @@ class ActionsWrapper {
         element.click()
     }
 
-    static void waitForCondition(Device device, Closure condition, int timeOut) {
+    static boolean waitForCondition(Device device, Closure condition, long timeOut) {
         try {
             WebDriverWait w = new WebDriverWait(device.getDriver(), timeOut)
             w.until(new ExpectedCondition<Boolean>() {
-                @Override
-                Boolean apply(WebDriver driver) {
+                public Boolean apply(WebDriver d) {
                     try {
                         return condition()
-                    } catch (all) {
-                        println("WAITFORCONDITION:$all")
-                        false
+                    } catch (ignore) {
+                        return false
                     }
                 }
             })
-        } catch (ignore) {
-            throw new Exception("Waiting for condition failed:" + condition)
+        } catch (all) {
+            throw new Exception("Waiting for condition failed: $condition, cause:$all")
         }
     }
 }

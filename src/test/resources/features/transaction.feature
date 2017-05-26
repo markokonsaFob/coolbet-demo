@@ -9,7 +9,8 @@ Feature: Transaction tests
     Then betslip with the selected selection is displayed
     When user logs in with VALID account
     Then user data is displayed
-    And filled betslip is displayed
+    When user checks the betslip
+    Then filled betslip is displayed
     When user enters 2 into stake field
     Then place bet button is disabled
     When user clicks deposit button
