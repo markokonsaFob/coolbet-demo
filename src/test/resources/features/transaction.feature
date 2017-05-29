@@ -13,7 +13,8 @@ Feature: Transaction tests
     Then filled betslip is displayed
     When user enters 2 into stake field
     Then place bet button is disabled
-    When user clicks deposit button
+    When user closes the right side menu
+    And user clicks deposit button
     Then fast deposit popup appears
     When user enters 75 into deposit field
     And user selects deposit method VISA

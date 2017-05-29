@@ -23,7 +23,7 @@ class Deposit extends PageObjects{
         super(device)
     }
 
-    Deposit(Device device, int timeout) {
+    Deposit(Device device, long timeout) {
         super(device, timeout)
     }
 }

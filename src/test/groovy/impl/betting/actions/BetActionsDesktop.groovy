@@ -18,6 +18,10 @@ class BetActionsDesktop implements IBetActions {
      * Opens sport page
      */
     void openSportPage() {
-        //bettingSection.getNavigationSports().click()
+        bettingSection.getNavigationSports().click()
+    }
+
+    void closeRightDrawer() {
+
     }
 }

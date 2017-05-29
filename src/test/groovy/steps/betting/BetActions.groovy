@@ -53,3 +53,6 @@ When(~/^user checks the betslip$/) { ->
         ActionsImpl.getBetSlipActions().clickBetSlipMenuButton()
     }
 }
+When(~/^user closes the right side menu$/) { ->
+    ActionsImpl.getBettingActions().closeRightDrawer()
+}

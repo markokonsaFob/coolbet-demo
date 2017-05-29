@@ -22,8 +22,16 @@ class CoreActionsMobile implements ICoreActions {
         if (device.getCapabilities().getCapability("capability").toString().toUpperCase() == "CHROME") {
             DeviceManager.getInstance().getActiveDevice().getDriver().manage().window().setSize(new Dimension(414, 736))
         }
-        ActionsImpl.getBettingActions().closeWelcomeBanner()
-        ActionsImpl.getBettingActions().acceptCookiePopup()
+        try {
+            ActionsImpl.getBettingActions().closeWelcomeBanner()
+        } catch (ignore) {
+            println "Welcome banner did not appear this time"
+        }
+        try {
+            ActionsImpl.getBettingActions().acceptCookiePopup()
+        } catch (ignore) {
+            println "Cookie popup did not appear this time"
+        }
 
     }
 }

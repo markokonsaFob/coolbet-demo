@@ -1,16 +1,13 @@
 package impl.betting.actions
 
-import impl.ActionsWrapper
 import impl.betting.pageobjects.BettingSection
 import impl.betting.pageobjects.Creditcard
 import impl.betting.pageobjects.Deposit
 import io.cify.framework.core.Device
-import org.openqa.selenium.interactions.Actions
 
 import static impl.ActionsWrapper.scrollIntoViewAndClick
-import static impl.Constants.TIMEOUT10S
-
 import static impl.ActionsWrapper.waitForCondition
+import static impl.Constants.TIMEOUT10S
 import static impl.Constants.TIMEOUT2S
 
 trait IBetActions {
@@ -25,23 +22,20 @@ trait IBetActions {
      * Clicks on first available active bet
      */
     void clickOnFirstAvailableBet() {
-        waitForCondition(device, { scrollIntoViewAndClick(device, new BettingSection(device,TIMEOUT2S).getAvailableBet()); true }, TIMEOUT10S)
+        waitForCondition(device, {
+            scrollIntoViewAndClick(device, new BettingSection(device, TIMEOUT2S).getAvailableBet()); true
+        }, TIMEOUT10S)
     }
 
     /**
      * Closes right side drawer menu
      */
-    void closeRightDrawer() {
-        int offset = 5
-        Actions action = new Actions(device.getDriver())
-        action.moveToElement(bettingSection.getDrawerClosingOverlay(), offset, offset).click().build().perform()
-    }
+    abstract void closeRightDrawer()
 
     /**
      * Clicks deposit button
      */
     void clickDepositButton() {
-        closeRightDrawer()
         bettingSection.getDepositButton().click()
     }
 
@@ -68,7 +62,7 @@ trait IBetActions {
         try {
             waitForCondition(device, { new Deposit(device, TIMEOUT2S).getContinueButton().isDisplayed() }, TIMEOUT10S)
             new Deposit(device).getContinueButton().click()
-            waitForCondition(device, { new Deposit(device,TIMEOUT2S).getContinueButton().isDisplayed() }, TIMEOUT10S)
+            waitForCondition(device, { new Deposit(device, TIMEOUT2S).getContinueButton().isDisplayed() }, TIMEOUT10S)
             new Deposit(device).getContinueButton().click()
         } catch (ignore) {
         }
@@ -132,7 +126,6 @@ trait IBetActions {
      * @return
      */
     boolean isCreditCardErrorDisplayed() {
-        println "ERROR MESSAGE:" + new Creditcard(device).getErrorMessage().getText()
         new Creditcard(device).getErrorMessage().isDisplayed()
     }
 

@@ -4,6 +4,7 @@ import impl.Account
 import impl.AccountType
 import impl.account.pageobjects.LoginPageObjects
 import io.cify.framework.core.Device
+import org.openqa.selenium.support.ui.ExpectedConditions
 
 import static impl.ActionsWrapper.waitForCondition
 import static impl.Constants.*
@@ -28,7 +29,7 @@ trait IAccountActions {
      * Clicks login button on main page
      */
     void clickMainPageLoginButton() {
-        waitForCondition(device, { new LoginPageObjects(device).getMainPageLoginButton().isDisplayed() }, TIMEOUT30S)
+        waitForCondition(device, ExpectedConditions.elementToBeClickable(new LoginPageObjects(device, TIMEOUT2S).getMainPageLoginButton()), TIMEOUT30S)
         waitForCondition(device, {
             new LoginPageObjects(device, TIMEOUT2S).getMainPageLoginButton().click(); true
         }, TIMEOUT30S)

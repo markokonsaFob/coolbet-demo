@@ -39,14 +39,14 @@ class BettingSection extends PageObjects {
     WebElement welcomeBannerCloseButton
 
     //Desktop only
-    @FindBy(css = "nav a[title=Sports]")
+    @FindBy(css = "nav a")
     WebElement navigationSports
 
     BettingSection(Device device) {
         super(device)
     }
 
-    BettingSection(Device device, int timeout) {
+    BettingSection(Device device, long timeout) {
         super(device, timeout)
     }
 }

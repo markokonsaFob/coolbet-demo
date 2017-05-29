@@ -30,7 +30,7 @@ class LoginPageObjects extends PageObjects {
         super(device)
     }
 
-    LoginPageObjects(Device device, int timeout) {
+    LoginPageObjects(Device device, long timeout) {
         super(device, timeout)
     }
 }

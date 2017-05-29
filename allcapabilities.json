@@ -1,0 +1,26 @@
+{
+  "videoRecord": true,
+  "videoDir": "build/cify/videos/",
+  "capabilities": {
+    "browser": {
+      "UIType": "Desktop",
+      "capability": "chrome",
+      "browserName": "chrome"
+    }
+  },
+  "browser": {
+    "UIType": "Mobile",
+    "capability": "Android",
+    "browserName": "chrome",
+    "deviceName": "AndroidPhone"
+  },
+  "browser": {
+    "UIType": "Mobile",
+    "capability": "iPhone",
+    "browserName": "safari",
+    "deviceName": "Fobs iPhone6s",
+    "udid": "913455fb42108ab854bb1c130dea9f0d31ffbe42",
+    "automationName": "XCUITest",
+    "startIWDP": true
+  }
+}
