@@ -81,7 +81,7 @@ trait IAccountActions {
     }
 
     void clickTransactions() {
-        myaccount.getTransactionsButton().click()
+        waitForCondition(device, { new MyAccount(device, TIMEOUT2S).getTransactionsButton().click(); true }, TIMEOUT20S)
     }
 
     boolean isTransactionsSectionDisplayed() {

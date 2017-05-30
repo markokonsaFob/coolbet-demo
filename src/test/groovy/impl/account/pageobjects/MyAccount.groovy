@@ -29,4 +29,8 @@ class MyAccount extends PageObjects {
     MyAccount(Device device) {
         super(device)
     }
+
+    MyAccount(Device device, long timeout) {
+        super(device, timeout)
+    }
 }
