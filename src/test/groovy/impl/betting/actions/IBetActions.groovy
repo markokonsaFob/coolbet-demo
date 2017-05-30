@@ -5,8 +5,7 @@ import impl.betting.pageobjects.Creditcard
 import impl.betting.pageobjects.Deposit
 import io.cify.framework.core.Device
 
-import static impl.ActionsWrapper.scrollIntoViewAndClick
-import static impl.ActionsWrapper.waitForCondition
+import static impl.ActionsWrapper.*
 import static impl.Constants.*
 
 trait IBetActions {
@@ -64,6 +63,7 @@ trait IBetActions {
             waitForCondition(device, { new Deposit(device, TIMEOUT2S).getContinueButton().isDisplayed() }, TIMEOUT10S)
             new Deposit(device).getContinueButton().click()
         } catch (ignore) {
+            sleep(2000)
         }
 
     }
@@ -88,6 +88,8 @@ trait IBetActions {
         if (device.getCapabilities().getCapability("capability") == "chrome") {
             waitForCondition(device, { creditcard.getDepositIFrame().isDisplayed() }, TIMEOUT10S)
             device.getDriver().switchTo().frame(creditcard.getDepositIFrame())
+        } else {
+            waitForCondition(device, { isDisplayed(creditcard.getCardHolder()) }, TIMEOUT10S)
         }
         enterCardHolderInfo()
     }
@@ -132,4 +134,9 @@ trait IBetActions {
      * Opens sport page
      */
     abstract void openSportPage()
+
+    void openMenu() {
+        bettingSection.getMenuButton().click()
+    }
 }
+

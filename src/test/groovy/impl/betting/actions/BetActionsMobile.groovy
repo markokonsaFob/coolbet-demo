@@ -25,7 +25,7 @@ class BetActionsMobile implements IBetActions {
      * Opens sport page
      */
     void openSportPage() {
-        bettingSection.getMenuButton().click()
+        openMenu()
         bettingSection.getSports().click()
         waitForCondition(device, { !new BettingSection(device, TIMEOUT2S).getSports().isDisplayed() }, TIMEOUT20S)
     }

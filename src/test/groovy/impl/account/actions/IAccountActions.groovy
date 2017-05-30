@@ -3,6 +3,7 @@ package impl.account.actions
 import impl.Account
 import impl.AccountType
 import impl.account.pageobjects.LoginPageObjects
+import impl.account.pageobjects.MyAccount
 import io.cify.framework.core.Device
 import org.openqa.selenium.support.ui.ExpectedConditions
 
@@ -13,6 +14,7 @@ import static impl.Constants.*
 trait IAccountActions {
     Device device
     LoginPageObjects loginPageObjects
+    MyAccount myaccount
 
     /**
      * Login with given account info
@@ -66,14 +68,25 @@ trait IAccountActions {
      * Checks that logged in user icon is displayed
      * @return
      */
-    boolean isUserIconDisplayed() {
-        try {
-            waitForCondition(device, {
-                new LoginPageObjects(device, TIMEOUT2S).getLoggedInIcon().isDisplayed()
-            }, TIMEOUT20S)
-            true
-        } catch (ignore) {
-            false
-        }
+    abstract boolean isUserIconDisplayed()
+
+    /**
+     * Opens my account section
+     */
+    abstract void openMyAccountSection()
+
+
+    boolean isAccountPageDisplayed() {
+        isDisplayed(myaccount.getPasswordForm()) && isDisplayed(myaccount.getProfileForm())
     }
+
+    void clickTransactions() {
+        myaccount.getTransactionsButton().click()
+    }
+
+    boolean isTransactionsSectionDisplayed() {
+        isDisplayed(myaccount.getTransActionsTable())
+    }
+
+    abstract void openTransactionsSection()
 }

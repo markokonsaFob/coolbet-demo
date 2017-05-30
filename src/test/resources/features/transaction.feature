@@ -28,12 +28,14 @@ Feature: Transaction tests
     When user clicks on first available bet selection
     Then betslip with the selected selection is displayed
     When user logs in with VALID account
+    Then user data is displayed
+    When user checks the betslip
     Then filled betslip is displayed
-    And user data is displayed
-    When user places a bet with chosen selection
-    Then betslip is filled with bet info
+    When user closes the right side menu
+    #When user places a bet with chosen selection
+    #Then betslip is filled with bet info
     When user opens my account view
     Then account page is displayed
     When user opens transactions view
     Then list of users transactions is displayed
-    And placed bet and deposit are displayed in transaction list
+    #And placed bet and deposit are displayed in transaction list

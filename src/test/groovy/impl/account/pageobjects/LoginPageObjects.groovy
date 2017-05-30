@@ -23,8 +23,16 @@ class LoginPageObjects extends PageObjects {
     @FindBy(css = ".login-form .action-btn")
     WebElement loginFormLoginButton
 
-    @FindBy(css = ".icon-user")
-    WebElement loggedInIcon
+    //Mobile icon
+    @FindBy(css = ".account .icon-user")
+    WebElement loggedInIconMobile
+
+    //Desktop icon
+    @FindBy(css = ".dropdown .icon-user")
+    WebElement loggedInIconDesktop
+
+    @FindBy(css = ".dropdown-menu li")
+    WebElement myAccount
 
     LoginPageObjects(Device device) {
         super(device)
