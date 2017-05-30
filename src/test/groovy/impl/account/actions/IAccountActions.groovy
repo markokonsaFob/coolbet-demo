@@ -6,6 +6,7 @@ import impl.account.pageobjects.LoginPageObjects
 import io.cify.framework.core.Device
 import org.openqa.selenium.support.ui.ExpectedConditions
 
+import static impl.ActionsWrapper.isDisplayed
 import static impl.ActionsWrapper.waitForCondition
 import static impl.Constants.*
 
@@ -40,6 +41,9 @@ trait IAccountActions {
      */
     void clickLoginFormLoginButton() {
         loginPageObjects.getLoginFormLoginButton().click()
+        waitForCondition(device, {
+            !isDisplayed(new LoginPageObjects(device, TIMEOUT2S).getLoginFormLoginButton())
+        }, TIMEOUT20S)
     }
 
     /**

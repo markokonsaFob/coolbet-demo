@@ -7,8 +7,7 @@ import io.cify.framework.core.Device
 
 import static impl.ActionsWrapper.scrollIntoViewAndClick
 import static impl.ActionsWrapper.waitForCondition
-import static impl.Constants.TIMEOUT10S
-import static impl.Constants.TIMEOUT2S
+import static impl.Constants.*
 
 trait IBetActions {
 
@@ -118,7 +117,7 @@ trait IBetActions {
      * Inserts credit card holder info
      */
     void enterCardHolderInfo() {
-        creditcard.getCardHolder().sendKeys("Fob Test")
+        new Creditcard(device, TIMEOUT30S).getCardHolder().sendKeys("Fob Test")
     }
 
     /**

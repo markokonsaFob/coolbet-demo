@@ -1,6 +1,5 @@
 package impl.betting.pageobjects
 
-import io.appium.java_client.pagefactory.AndroidFindBy
 import io.cify.framework.PageObjects
 import io.cify.framework.core.Device
 import org.openqa.selenium.WebElement
@@ -38,5 +37,9 @@ class Creditcard extends PageObjects {
 
     Creditcard(Device device) {
         super(device)
+    }
+
+    Creditcard(Device device, long timeout) {
+        super(device, timeout)
     }
 }
