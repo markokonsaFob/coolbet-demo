@@ -75,18 +75,47 @@ trait IAccountActions {
      */
     abstract void openMyAccountSection()
 
-
+    /**
+     * Checks that password and profile forms are visible on account page
+     * @return
+     */
     boolean isAccountPageDisplayed() {
         isDisplayed(myaccount.getPasswordForm()) && isDisplayed(myaccount.getProfileForm())
     }
 
+    /**
+     * Clicks "transactions" link in left side menu
+     */
     void clickTransactions() {
         waitForCondition(device, { new MyAccount(device, TIMEOUT2S).getTransactionsButton().click(); true }, TIMEOUT20S)
     }
 
+    /**
+     * Checks that transactions table is displayed
+     * @return
+     */
     boolean isTransactionsSectionDisplayed() {
         isDisplayed(myaccount.getTransActionsTable())
     }
 
+    /**
+     * Clicks filter button "Today"
+     */
+    void showOnlyTodays() {
+        myaccount.getTransActionsFilterToday().click()
+
+    }
+
+    /**
+     * Opens transactions section via menu
+     */
+
     abstract void openTransactionsSection()
+
+    /**
+     * Checks that transaction view contains recent bets id, timestamp and bet amount
+     * That info must previously be saved to TestDataManager
+     * @return
+     */
+    abstract boolean isBetInformationVisible()
 }

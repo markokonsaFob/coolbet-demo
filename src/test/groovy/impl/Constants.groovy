@@ -8,4 +8,8 @@ class Constants {
     static final long TIMEOUT2S = 2
     static final long TIMEOUT20S = 20
     static final long TIMEOUT30S = 30
+
+    static final String CREATED = "created"
+    static final String ID = "id"
+    static final String AMOUNT = "amount"
 }

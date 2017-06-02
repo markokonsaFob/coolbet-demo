@@ -26,3 +26,11 @@ Then(~/^place bet button is disabled$/) { ->
         throw new Exception("Place bet button should be disabled")
     }
 }
+When(~/^user places a bet with chosen selection$/) { ->
+    ActionsImpl.getBetSlipActions().clickPlaceBetButton()
+}
+Then(~/^successful bet message is displayed$/) { ->
+    if (!ActionsImpl.getBetSlipActions().isBetSuccessful()) {
+        throw new Exception("Making a bet was not successful")
+    }
+}

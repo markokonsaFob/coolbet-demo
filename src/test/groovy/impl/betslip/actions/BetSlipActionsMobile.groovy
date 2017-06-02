@@ -1,16 +1,12 @@
 package impl.betslip.actions
 
 import impl.betslip.pageobjects.BetSlip
-import impl.betting.actions.IBetActions
 import impl.betting.pageobjects.BettingSection
-import impl.betting.pageobjects.Creditcard
-import impl.betting.pageobjects.Deposit
 import io.cify.framework.core.Device
 
+class BetSlipActionsMobile implements IBetSlipActions {
 
-class BetSlipActionsMobile implements IBetSlipActions{
-
-    BetSlipActionsMobile(Device device){
+    BetSlipActionsMobile(Device device) {
         this.device = device
         this.bettingSection = new BettingSection(device)
         this.betSlip = new BetSlip(device)
@@ -22,11 +18,20 @@ class BetSlipActionsMobile implements IBetSlipActions{
      */
     void insertStake(String stake) {
         int indexCorrector = 1
+        int dotIndex = 10
+        int zeroIndex = 9
         betSlip.getStakeField().click()
         stake.each {
-            betSlip.getStakeNumpadButtons().get((it as int) - indexCorrector).click()
+            switch (it) {
+                case '.': betSlip.getStakeNumpadButtons().get(dotIndex).click()
+                    break
+                case '0': betSlip.getStakeNumpadButtons().get(zeroIndex).click()
+                    break
+                default: betSlip.getStakeNumpadButtons().get((it as int) - indexCorrector).click()
+            }
         }
         betSlip.getStakeNumpadButtons().last().click()
 
     }
+
 }

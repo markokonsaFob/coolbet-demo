@@ -1,12 +1,12 @@
 package impl.betslip.actions
 
+import impl.TestDataManager
 import impl.betslip.pageobjects.BetSlip
 import impl.betting.pageobjects.BettingSection
 import io.cify.framework.core.Device
 
-import static impl.ActionsWrapper.waitForCondition
-import static impl.Constants.TIMEOUT20S
-import static impl.Constants.TIMEOUT2S
+import static impl.ActionsWrapper.*
+import static impl.Constants.*
 
 trait IBetSlipActions {
 
@@ -74,5 +74,41 @@ trait IBetSlipActions {
         } catch (ignore) {
             false
         }
+    }
+
+    /**
+     * Clicks place bet button
+     */
+    void clickPlaceBetButton() {
+        if (isPlaceBetButtonDisabled()) {
+            clickoffsChangeCheckbox()
+        }
+        betSlip.getPlaceBetButton().click()
+
+    }
+
+    /**
+     * Checks that successful bet message is displayed
+     */
+    boolean isBetSuccessful() {
+        try {
+            waitForCondition(device, { isDisplayed(new BetSlip(device).getBetSuccessfulMessage()) }, TIMEOUT30S)
+            String betAmount = betSlip.getOutcomeTable().last().getText()
+            String messageText = betSlip.getBetdate().getText()
+
+            TestDataManager.setTestData(CREATED, findValueFromString(messageText, "/ (.*)"))
+            TestDataManager.setTestData(AMOUNT, betAmount)
+            TestDataManager.setTestData(ID, findValueFromString(messageText, "BET ID: (.*?) "))
+            true
+        } catch (ignore) {
+            false
+        }
+    }
+
+    /**
+     * Clicks accept odds checkbox
+     */
+    void clickoffsChangeCheckbox() {
+        new BetSlip(device).getAcceptOddsChanges().click()
     }
 }

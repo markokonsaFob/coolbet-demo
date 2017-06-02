@@ -20,6 +20,12 @@ class MyAccount extends PageObjects {
     @FindBy(css = ".transactions-table")
     WebElement transActionsTable
 
+    @FindBy(css = ".btn[ng-click*='today']")
+    WebElement transActionsFilterToday
+
+    @FindBy(css = ".transactions-table tbody")
+    WebElement latestTransaction
+
     @FindBy(css = ".profile-menu a[ui-sref*='root.account.home']")
     WebElement menuProfile
 

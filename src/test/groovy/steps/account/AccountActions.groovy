@@ -32,3 +32,11 @@ When(~/^user opens transactions view$/) { ->
 Then(~/^list of users transactions is displayed$/) { ->
     ActionsImpl.getAccountActions().isTransactionsSectionDisplayed()
 }
+And(~/^placed bet and deposit are displayed in transaction list$/) { ->
+    if (!ActionsImpl.getAccountActions().isBetInformationVisible()) {
+        throw new Exception("Bet information is not displayed in transaction list")
+    }
+}
+And(~/^user filters transactions to only show todays$/) { ->
+    ActionsImpl.getAccountActions().showOnlyTodays()
+}

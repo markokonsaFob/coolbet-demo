@@ -31,11 +31,13 @@ Feature: Transaction tests
     Then user data is displayed
     When user checks the betslip
     Then filled betslip is displayed
+    When user enters 0.1 into stake field
+    When user places a bet with chosen selection
+    Then successful bet message is displayed
     When user closes the right side menu
-    #When user places a bet with chosen selection
-    #Then betslip is filled with bet info
     When user opens my account view
     Then account page is displayed
     When user opens transactions view
     Then list of users transactions is displayed
-    #And placed bet and deposit are displayed in transaction list
+    And user filters transactions to only show todays
+    And placed bet and deposit are displayed in transaction list

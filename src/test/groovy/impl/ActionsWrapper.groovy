@@ -8,7 +8,11 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedCondition
 import org.openqa.selenium.support.ui.WebDriverWait
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 import static impl.Constants.TIMEOUT10S
+
 class ActionsWrapper {
 
     /**
@@ -86,4 +90,19 @@ class ActionsWrapper {
             return false
         }
     }
+
+    /**
+     * Extracts value from String using given regex
+     */
+    static String findValueFromString(String haystack, String needle) {
+        Pattern pattern = Pattern.compile(needle)
+        Matcher matcher = pattern.matcher(haystack)
+        if (matcher.find()) {
+            return matcher.group(1)
+        } else {
+            ""
+        }
+
+    }
+
 }

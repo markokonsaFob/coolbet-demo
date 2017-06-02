@@ -20,7 +20,6 @@
     "browserName": "safari",
     "deviceName": "Fobs iPhone6s",
     "udid": "913455fb42108ab854bb1c130dea9f0d31ffbe42",
-    "automationName": "XCUITest",
-    "startIWDP": true
+    "automationName": "XCUITest"
   }
 }

@@ -28,6 +28,18 @@ class BetSlip extends PageObjects{
     @FindBy(css = ".betslip-numpad button")
     List<WebElement> stakeNumpadButtons
 
+    @FindBy(css = ".bet-receipt .header h1")
+    WebElement betSuccessfulMessage
+
+    @FindBy(css = "#acceptAnyOddsChanges")
+    WebElement acceptOddsChanges
+
+    @FindBy(css = ".bet-receipt .header span")
+    WebElement betdate
+
+    @FindBy(css = ".outcomes-table td")
+    List<WebElement> outcomeTable
+
     BetSlip(Device device){
         super(device)
     }
