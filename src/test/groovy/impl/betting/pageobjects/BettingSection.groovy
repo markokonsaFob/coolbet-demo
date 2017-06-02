@@ -28,6 +28,8 @@ class BettingSection extends PageObjects {
     @FindBy(css = "li .sport")
     WebElement sports
 
+    @FindBy(css = ".live-switch button:nth-child(2)")
+    WebElement soonButton
     //Mobile only
     @FindBy(css = ".m-menu")
     WebElement menuButton

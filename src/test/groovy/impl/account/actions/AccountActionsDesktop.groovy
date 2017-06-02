@@ -6,9 +6,9 @@ import io.cify.framework.core.Device
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 
+import static impl.ActionsWrapper.findValueFromString
 import static impl.ActionsWrapper.waitForCondition
-import static impl.Constants.TIMEOUT20S
-import static impl.Constants.TIMEOUT2S
+import static impl.Constants.*
 import static impl.TestDataManager.getValue
 
 class AccountActionsDesktop implements IAccountActions {
@@ -59,8 +59,8 @@ class AccountActionsDesktop implements IAccountActions {
         int description = 2
         int amount = 4
         List<WebElement> transActionFields = myaccount.getLatestTransaction().findElements(By.cssSelector("td"))
-        transActionFields.get(created).getText() == getValue("created") &&
-                transActionFields.get(description).getText().contains(getValue("created")) &&
-                transActionFields.get(amount).getText() == getValue("created")
+        transActionFields.get(created).getText() == getValue(CREATED) &&
+                findValueFromString(transActionFields.get(description).getText(), "#(.*?) ") == (getValue(ID)) &&
+                transActionFields.get(amount).getText().replaceAll("-", "") as BigDecimal == getValue(AMOUNT) as BigDecimal
     }
 }

@@ -32,6 +32,9 @@ class MyAccount extends PageObjects {
     @FindBy(css = ".backdrop-overflow")
     WebElement drawerClosingOverlay
 
+    @FindBy(css = ".btn[ng-click*='all']")
+    WebElement transActionsFilterAll
+
     MyAccount(Device device) {
         super(device)
     }
