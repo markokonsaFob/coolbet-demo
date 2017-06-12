@@ -28,6 +28,7 @@ Then(~/^place bet button is disabled$/) { ->
 }
 When(~/^user places a bet with chosen selection$/) { ->
     ActionsImpl.getBetSlipActions().clickPlaceBetButton()
+    ActionsImpl.getBetSlipActions().clickConfirmBetButton()
 }
 Then(~/^successful bet message is displayed$/) { ->
     if (!ActionsImpl.getBetSlipActions().isBetSuccessful()) {

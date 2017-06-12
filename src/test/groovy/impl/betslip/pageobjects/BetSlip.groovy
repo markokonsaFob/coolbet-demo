@@ -16,6 +16,9 @@ class BetSlip extends PageObjects{
     @FindBy(css = ".bets-list .btn")
     WebElement placeBetButton
 
+    @FindBy(css = ".form-group .success-btn")
+    WebElement confirmButton
+
     @FindBy(css =".odds-item.active .odds-item-odd")
     WebElement betAmount
 

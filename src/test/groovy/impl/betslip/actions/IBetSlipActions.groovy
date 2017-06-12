@@ -111,4 +111,11 @@ trait IBetSlipActions {
     void clickoffsChangeCheckbox() {
         new BetSlip(device).getAcceptOddsChanges().click()
     }
+
+    /**
+     * Clicks bet confirmation button
+     */
+    void clickConfirmBetButton() {
+        new BetSlip(device).getConfirmButton().click()
+    }
 }

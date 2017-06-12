@@ -103,10 +103,10 @@ trait IAccountActions {
      */
     void showOnlyTodays() {
         myaccount.getTransActionsFilterToday().click()
-        waitForCondition(device, {
-            !new MyAccount(device, TIMEOUT2S).getTransActionsFilterAll().getAttribute("class").contains("active")
-        }, TIMEOUT20S)
-
+        sleep(2000)
+        //waitForCondition(device, {
+        //    !new MyAccount(device, TIMEOUT2S).getTransActionsFilterAll().getAttribute("class").contains("active")
+        //}, TIMEOUT20S)
     }
 
     /**
