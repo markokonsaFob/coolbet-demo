@@ -3,10 +3,8 @@
   "videoDir": "build/cify/videos/",
   "capabilities": {
     "browser": {
-      "UIType": "Mobile",
-      "capability": "chrome",
-      "browserName":"chrome",
-      "deviceName":"AndroidDevice"
+      "UIType": "Desktop",
+      "capability": "chrome"
     }
-    }
+  }
 }
