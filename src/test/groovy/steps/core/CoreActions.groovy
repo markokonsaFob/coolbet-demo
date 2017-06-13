@@ -6,6 +6,7 @@ import cucumber.api.groovy.Hooks
 import impl.ActionsImpl
 import io.cify.framework.core.DeviceCategory
 import io.cify.framework.core.DeviceManager
+import org.openqa.selenium.remote.DesiredCapabilities
 
 this.metaClass.mixin(Hooks)
 this.metaClass.mixin(EN)
@@ -24,4 +25,13 @@ Given(~/^home page is open on (.*)$/) { String platform ->
 }
 After() {
     DeviceManager.getInstance().quitAllDevices()
+}
+
+After(999999) { Scenario scenario ->
+    try {
+        DesiredCapabilities caps = DeviceManager.getInstance().getActiveDevice().getCapabilities()
+        caps.getCapability("video") ? scenario.write(caps.getCapability("video") as String) : null
+    } catch (ignored) {
+        println("Failed to print video to scenario console")
+    }
 }
