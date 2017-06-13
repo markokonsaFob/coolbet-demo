@@ -1,10 +1,8 @@
 Feature: Transaction tests
 
-  Background:
+  Scenario: Make a bet with insufficient balance
     Given home page is open
     And live sports betting view is selected
-
-  Scenario: Make a bet with insufficient balance
     When user clicks on first available bet selection
     Then betslip with the selected selection is displayed
     When user logs in with VALID account
@@ -25,6 +23,8 @@ Feature: Transaction tests
 
 
   Scenario: Make a bet with sufficient balance
+    Given home page is open
+    And live sports betting view is selected
     When user clicks on first available bet selection
     Then betslip with the selected selection is displayed
     When user logs in with VALID account
